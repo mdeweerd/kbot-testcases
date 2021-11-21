@@ -3,7 +3,7 @@ kibot:
   version: 1
 
 import:
-  - PCBWay2.kibot.yaml
+  - PCBWay3.kibot.yaml
 
 global:
   variant: topvariant

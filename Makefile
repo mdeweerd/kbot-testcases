@@ -11,6 +11,9 @@ endif
 # Run test case
 .PHONY: default
 default:
+	$(KIBOT) -e tests/board_samples/kicad_5/kibom-variant_4.sch -b tests/board_samples/kicad_5/kibom-variant_4.kicad_pcb -c tests/yaml_samples/step_variant_2.kibot.yaml -g variant=topvariant PCBWay_bom
+
+tc1:
 	$(KIBOT) -e tests/board_samples/kicad_5/kibom-variant_4.sch -b tests/board_samples/kicad_5/kibom-variant_4.kicad_pcb -c tests/yaml_samples/step_variant_2.kibot.yaml -g variant=topvariant schematic_color bom steptopvariant stepleftvariant gerbers compress PCBWay_gerbers PCBWay_drill PCBWay
 
 
