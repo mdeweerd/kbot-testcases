@@ -11,6 +11,9 @@ endif
 # Run test case
 .PHONY: default
 default:
+	$(KIBOT) -e tests/board_samples/kicad_5/kibom-variant_4.sch -b tests/board_samples/kicad_5/kibom-variant_4.kicad_pcb -c tests/yaml_samples/step_variant_2.kibot.yaml -g variant=topvariant JLCPCB_bom
+
+tc2:
 	$(KIBOT) -e tests/board_samples/kicad_5/kibom-variant_4.sch -b tests/board_samples/kicad_5/kibom-variant_4.kicad_pcb -c tests/yaml_samples/step_variant_2.kibot.yaml -g variant=topvariant PCBWay_bom
 
 tc1:
@@ -20,12 +23,14 @@ tc1:
 # Package test case
 .PHONY: package
 package:
-	tar zcv --exclude="*.tar.gz" --exclude=".git*" -f tc1.tar.gz * 
+	tar zcv --exclude="*.tar.gz" --exclude=".git*" -f tc2.tar.gz * 
 
 
 .PHONY: clean
 clean:
 	rm -rf kibom-variant_4__*
+	rm kibot.log
+	*.tra.gz
 
 
 # Private target to check that the file in the VM is recent
