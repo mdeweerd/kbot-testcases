@@ -28,9 +28,7 @@ package:
 
 .PHONY: clean
 clean:
-	rm -rf kibom-variant_4__*
-	rm kibot.log
-	*.tra.gz
+	rm -rf kibom-variant_4__* kibot.log *.tar.gz
 
 
 # Private target to check that the file in the VM is recent
