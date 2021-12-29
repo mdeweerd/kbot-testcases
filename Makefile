@@ -51,7 +51,7 @@ package: package-tc5
 # Package test case
 .PHONY: package
 package-%:
-	tar zcv --exclude="*.tar.gz" --exclude=".git*" -f $*.tar.gz $(KICOD_PRO_DIR)$** $**
+	tar zcv --exclude="*.tar.gz" --exclude=".git*" -f $*.tar.gz $(KICOD_PRO_DIR)$** $** designs/$** Makefile yaml 
 
 
 .PHONY: clean
