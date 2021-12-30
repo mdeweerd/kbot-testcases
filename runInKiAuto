@@ -62,7 +62,7 @@ LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd
 #LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/kiauto/eeschema_do):/usr/lib/python3.7/dist-packages/kiaut:rw"
 #LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot):${TGTHOMEDIR}/kibot:rw"
 LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot/kibot):/usr/local/lib/python3.7/dist-packages/kibot:rw"
-LOCAL_KBOTREPO=
+#LOCAL_KBOTREPO=
 LOCAL_KIAUTOREPO=
 if [ "$ARGS" == "" ] ; then
   ARGS=bash
