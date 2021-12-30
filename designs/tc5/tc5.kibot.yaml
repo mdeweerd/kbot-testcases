@@ -3,7 +3,7 @@ kibot:
 
 import:
   - file: ../../yaml/common.kibot.yaml
-    filters: [ 'bom' ]
+    filters: [ 'bom', 'test_points' ]
   - file: ../../yaml/pcbfull.kibot.yaml
 #    outputs:
 #    filters: 

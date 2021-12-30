@@ -26,8 +26,12 @@ filters:
     exclude_refs:
       - QR*
       - TP*
-
-
+  - name: 'test_points'
+    comment: 'Get the test points'
+    type: generic
+    invert: true
+    exclude_refs:
+      - TP*
 
 outputs:
   - name: "schematic_color"
@@ -666,3 +670,12 @@ outputs:
       #   - field:
       #     name:
       #variant:
+
+  - name: 'position_test_points'
+    type: position
+    dir: "+PCBA"
+    extends: 'position'
+    output_id: '_test_points'
+    options:
+      variant: 'test_points'
+      include_virtual: true

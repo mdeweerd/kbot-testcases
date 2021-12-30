@@ -3,6 +3,8 @@
 # Set KIBOT according to local machine or general case
 ifeq ($(HOSTNAME),YNA010)
   KIBOT=./runInKiAuto kibot
+else ifeq ($(HOSTNAME),YNA007)
+  KIBOT=./runInKiAuto kibot
 else
   KIBOT?=kibot
 endif
@@ -20,6 +22,7 @@ TARGETS_2D+=pcbbottom_img
 TARGET_ALLPADS=allpads_pcb allpads_drill allpads_position allpads_zip
 
 TARGETS=
+TARGETS+=position_test_points
 TARGETS+=schematic_color schematic_bw
 TARGETS+=bom ibom
 TARGETS+=position gerbers gerb_drill excellon
