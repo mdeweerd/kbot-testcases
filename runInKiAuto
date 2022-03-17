@@ -13,7 +13,7 @@ export SUBDIR=$(basename $0)
 export WORKDIR=$(realpath "$(dirname $0)")
 export SUBDIR=.
 export DISPLAY=${DISPLAY:=0}
-export HOMEDIR=$(realpath "$(dirname $0)/..")/kibot
+export HOMEDIR=$(realpath "$(dirname $0)/..")/kibotHome
 if [ ${USER_ID} != 0 ] ; then
   export TGTHOMEDIR="/home/${USER}"
 else
@@ -63,6 +63,7 @@ LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd
 #LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot):${TGTHOMEDIR}/kibot:rw"
 LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot/kibot):/usr/local/lib/python3.7/dist-packages/kibot:rw"
 #LOCAL_KBOTREPO=
+LOCAL_KIAUTOREPO=
 if [ "$ARGS" == "" ] ; then
   ARGS=bash
 fi
