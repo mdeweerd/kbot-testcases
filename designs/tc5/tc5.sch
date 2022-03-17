@@ -14,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Graphic:SYM_Arrow_Normal QR1
+L tc5-rescue:SYM_Arrow_Normal-Graphic QR1
 U 1 1 61C5D077
 P 1925 1450
 F 0 "QR1" H 1925 1510 50  0001 C CNN
@@ -29,7 +29,7 @@ $EndComp
 Text Notes 1475 1375 0    50   ~ 0
 Symbol to represent QRCode on PCB
 $Comp
-L Amplifier_Operational:MCP6001-OT U1001
+L tc5-rescue:MCP6001-OT-Amplifier_Operational U1001
 U 1 1 61C5DBDB
 P 3300 2375
 F 0 "U1001" H 3350 2225 50  0000 L CNN
@@ -43,7 +43,7 @@ F 6 "opamp" H 3300 2375 50  0001 C CNN "variant"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R1001
+L tc5-rescue:R_Small-Device R1001
 U 1 1 61C60726
 P 3225 3100
 F 0 "R1001" V 3300 3100 50  0000 C CNN
@@ -70,7 +70,7 @@ Wire Wire Line
 	3600 3100 4100 3100
 Connection ~ 3600 3100
 $Comp
-L Connector:Conn_01x04_Male J1001
+L tc5-rescue:Conn_01x04_Male-Connector J1001
 U 1 1 61C635DD
 P 1525 2250
 F 0 "J1001" H 1632 2527 50  0000 C CNN
@@ -100,7 +100,7 @@ Wire Wire Line
 Wire Wire Line
 	1725 2450 1950 2450
 $Comp
-L power:VCC #PWR0101
+L tc5-rescue:VCC-power #PWR0101
 U 1 1 61C66B30
 P 1950 2150
 F 0 "#PWR0101" H 1950 2000 50  0001 C CNN
@@ -111,7 +111,7 @@ F 3 "" H 1950 2150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power:GND #PWR0102
+L tc5-rescue:GND-power #PWR0102
 U 1 1 61C67A4F
 P 1950 2250
 F 0 "#PWR0102" H 1950 2000 50  0001 C CNN
@@ -122,7 +122,7 @@ F 3 "" H 1950 2250 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L power:VCC #PWR0103
+L tc5-rescue:VCC-power #PWR0103
 U 1 1 61C686E2
 P 3200 2075
 F 0 "#PWR0103" H 3200 1925 50  0001 C CNN
@@ -133,7 +133,7 @@ F 3 "" H 3200 2075 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR0104
+L tc5-rescue:GND-power #PWR0104
 U 1 1 61C68E55
 P 3200 2675
 F 0 "#PWR0104" H 3200 2425 50  0001 C CNN
@@ -154,7 +154,7 @@ _opa_neg
 Text Label 2875 2675 1    31   ~ 0
 _AOPIN+
 $Comp
-L Connector:TestPoint_Probe TP1003
+L tc5-rescue:TestPoint_Probe-Connector TP1003
 U 1 1 61C6D8DC
 P 4100 3100
 F 0 "TP1003" H 4252 3200 50  0000 L CNN
@@ -165,7 +165,7 @@ F 3 "~" H 4300 3100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint_Probe TP1002
+L tc5-rescue:TestPoint_Probe-Connector TP1002
 U 1 1 61C6F0D8
 P 2875 3100
 F 0 "TP1002" H 3100 3125 50  0000 R CNN
@@ -177,7 +177,7 @@ F 3 "~" H 3075 3100 50  0001 C CNN
 $EndComp
 Connection ~ 2875 3100
 $Comp
-L Connector:TestPoint_Probe TP1001
+L tc5-rescue:TestPoint_Probe-Connector TP1001
 U 1 1 61C7065D
 P 2850 2275
 F 0 "TP1001" H 3250 2300 50  0000 R CNN
@@ -188,7 +188,7 @@ F 3 "~" H 3050 2275 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector:TestPoint_Probe TP1005
+L tc5-rescue:TestPoint_Probe-Connector TP1005
 U 1 1 61C76041
 P 1925 2975
 F 0 "TP1005" V 1934 3127 50  0000 L CNN
@@ -199,7 +199,7 @@ F 3 "~" H 2125 2975 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:TestPoint_Probe TP1004
+L tc5-rescue:TestPoint_Probe-Connector TP1004
 U 1 1 61C77FC1
 P 1925 2750
 F 0 "TP1004" V 1934 2902 50  0000 L CNN
@@ -210,7 +210,7 @@ F 3 "~" H 2125 2750 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power:GND #PWR0105
+L tc5-rescue:GND-power #PWR0105
 U 1 1 61C784ED
 P 1775 2975
 F 0 "#PWR0105" H 1775 2725 50  0001 C CNN
@@ -223,7 +223,7 @@ $EndComp
 Wire Wire Line
 	1775 2975 1925 2975
 $Comp
-L power:VCC #PWR0106
+L tc5-rescue:VCC-power #PWR0106
 U 1 1 61C78DD6
 P 1775 2750
 F 0 "#PWR0106" H 1775 2600 50  0001 C CNN
@@ -235,4 +235,17 @@ F 3 "" H 1775 2750 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1775 2750 1925 2750
+$Comp
+L Graphic:SYM_Arrow_XLarge BRD1
+U 1 1 62329410
+P 2000 1075
+F 0 "BRD1" H 2000 1165 50  0001 C CNN
+F 1 "SYM_Arrow_XLarge" H 2000 995 50  0001 C CNN
+F 2 "tc5:DemoBoard" H 2000 1075 50  0001 C CNN
+F 3 "~" H 2000 1075 50  0001 C CNN
+	1    2000 1075
+	1    0    0    -1  
+$EndComp
+Text Notes 1475 975  0    50   ~ 0
+Symbol to represent PCB
 $EndSCHEMATC
