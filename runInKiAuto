@@ -1,8 +1,11 @@
 #!/bin/bash
 #IMAGE=setsoft/kicad_auto:10.3-5.1.5
+#IMAGE=setsoft/kicad_auto:10.4-5.1.9
+#IMAGE=setsoft/kicad_auto:nightly
 IMAGE=setsoft/kicad_auto:dev
 #IMAGE=setsoft/kicad_auto:latest
 #IMAGE=setsoft/kicad_auto:10.4-5.1.6rc
+docker pull $IMAGE
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
 # Using root on windows
@@ -13,7 +16,7 @@ export SUBDIR=$(basename $0)
 export WORKDIR=$(realpath "$(dirname $0)")
 export SUBDIR=.
 export DISPLAY=${DISPLAY:=0}
-export HOMEDIR=$(realpath "$(dirname $0)/..")/kibotHome
+export HOMEDIR=$(realpath "$(dirname $0)/..")/kibot
 if [ ${USER_ID} != 0 ] ; then
   export TGTHOMEDIR="/home/${USER}"
 else
@@ -53,23 +56,23 @@ LOCAL_KICAD_LIBDIR=$(cygpath -d -w "$LOCAL_KICAD_DIR/library")
 LOCAL_KICAD_MODULESDIR=$(cygpath -d -w "$LOCAL_KICAD_DIR/modules")
 LOCAL_KICAD_LIB_SETTING="--volume=${LOCAL_KICAD_LIBDIR}:/usr/share/kicad/library:ro --volume=${LOCAL_KICAD_MODULESDIR}:/usr/share/kicad/modules:ro"
 
-#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot-repo/kibot):/usr/lib/python3.7/dist-packages/kibot:rw"
+#LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot-repo/kibot):/usr/lib/python3.7/dist-packages/kibot:rw"
 
 LOCAL_KIAUTOREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/kiauto):/usr/lib/python3/dist-packages/kiauto:rw"
 LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/src/pcbnew_do):/usr/bin/pcbnew_do:rw"
 LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/src/eeschema_do):/usr/bin/eeschema_do:rw"
 
-#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/kiauto/eeschema_do):/usr/lib/python3.7/dist-packages/kiaut:rw"
-#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot):${TGTHOMEDIR}/kibot:rw"
-LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot/kibot):/usr/local/lib/python3.7/dist-packages/kibot:rw"
-#LOCAL_KBOTREPO=
+#LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/kiauto/eeschema_do):/usr/lib/python3.7/dist-packages/kiauto:rw"
+#LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot):${TGTHOMEDIR}/kibot:rw"
+LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot/kibot):/usr/local/lib/python3.7/dist-packages/kibot:rw"
+#LOCAL_KIBOTREPO=
 LOCAL_KIAUTOREPO=
 if [ "$ARGS" == "" ] ; then
   ARGS=bash
 fi
 docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY \
     ${LOCAL_KICAD_LIB_SETTING} \
-    ${LOCAL_KBOTREPO} \
+    ${LOCAL_KIBOTREPO} \
     ${LOCAL_KIAUTOREPO} \
     -v $WORKDIR:${TGTHOMEDIR}/workdir \
     --env NO_AT_BRIDGE=1 \

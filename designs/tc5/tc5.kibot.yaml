@@ -27,7 +27,7 @@ variants:
     comment: 'Header only for test'
     type: kicost
     file_id: _header
-    variant: '^(header)$'
+    variant: '^(board_type_duo|header)$'
 
   - name: 'all'
     comment: 'All components'

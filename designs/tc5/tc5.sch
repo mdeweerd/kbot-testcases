@@ -168,7 +168,7 @@ $Comp
 L tc5-rescue:TestPoint_Probe-Connector TP1002
 U 1 1 61C6F0D8
 P 2875 3100
-F 0 "TP1002" H 3100 3125 50  0000 R CNN
+F 0 "TP1002" H 3050 3350 50  0000 R CNN
 F 1 "TP_NEG" H 3075 3275 50  0000 R CNN
 F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 3075 3100 50  0001 C CNN
 F 3 "~" H 3075 3100 50  0001 C CNN
@@ -190,51 +190,51 @@ $EndComp
 $Comp
 L tc5-rescue:TestPoint_Probe-Connector TP1005
 U 1 1 61C76041
-P 1925 2975
-F 0 "TP1005" V 1934 3127 50  0000 L CNN
-F 1 "TP_GND" V 2023 3127 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 2125 2975 50  0001 C CNN
-F 3 "~" H 2125 2975 50  0001 C CNN
-	1    1925 2975
+P 1925 3175
+F 0 "TP1005" V 1934 3327 50  0000 L CNN
+F 1 "TP_GND" V 2023 3327 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 2125 3175 50  0001 C CNN
+F 3 "~" H 2125 3175 50  0001 C CNN
+	1    1925 3175
 	0    1    1    0   
 $EndComp
 $Comp
 L tc5-rescue:TestPoint_Probe-Connector TP1004
 U 1 1 61C77FC1
-P 1925 2750
-F 0 "TP1004" V 1934 2902 50  0000 L CNN
-F 1 "TP_VCC" V 2023 2902 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 2125 2750 50  0001 C CNN
-F 3 "~" H 2125 2750 50  0001 C CNN
-	1    1925 2750
+P 1925 2950
+F 0 "TP1004" V 1934 3102 50  0000 L CNN
+F 1 "TP_VCC" V 2023 3102 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 2125 2950 50  0001 C CNN
+F 3 "~" H 2125 2950 50  0001 C CNN
+	1    1925 2950
 	0    1    1    0   
 $EndComp
 $Comp
 L tc5-rescue:GND-power #PWR0105
 U 1 1 61C784ED
-P 1775 2975
-F 0 "#PWR0105" H 1775 2725 50  0001 C CNN
-F 1 "GND" H 1780 2804 50  0000 C CNN
-F 2 "" H 1775 2975 50  0001 C CNN
-F 3 "" H 1775 2975 50  0001 C CNN
-	1    1775 2975
+P 1775 3175
+F 0 "#PWR0105" H 1775 2925 50  0001 C CNN
+F 1 "GND" H 1780 3004 50  0000 C CNN
+F 2 "" H 1775 3175 50  0001 C CNN
+F 3 "" H 1775 3175 50  0001 C CNN
+	1    1775 3175
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1775 2975 1925 2975
+	1775 3175 1925 3175
 $Comp
 L tc5-rescue:VCC-power #PWR0106
 U 1 1 61C78DD6
-P 1775 2750
-F 0 "#PWR0106" H 1775 2600 50  0001 C CNN
-F 1 "VCC" H 1790 2921 50  0000 C CNN
-F 2 "" H 1775 2750 50  0001 C CNN
-F 3 "" H 1775 2750 50  0001 C CNN
-	1    1775 2750
+P 1775 2950
+F 0 "#PWR0106" H 1775 2800 50  0001 C CNN
+F 1 "VCC" H 1790 3121 50  0000 C CNN
+F 2 "" H 1775 2950 50  0001 C CNN
+F 3 "" H 1775 2950 50  0001 C CNN
+	1    1775 2950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1775 2750 1925 2750
+	1775 2950 1925 2950
 $Comp
 L Graphic:SYM_Arrow_XLarge BRD1
 U 1 1 62329410
@@ -248,4 +248,195 @@ F 3 "~" H 2000 1075 50  0001 C CNN
 $EndComp
 Text Notes 1475 975  0    50   ~ 0
 Symbol to represent PCB
+Text Notes 3925 3725 0    59   ~ 0
+Voltage divider to set board type
+Wire Wire Line
+	3450 3850 3525 3850
+$Comp
+L Device:R R60
+U 1 1 5D72370C
+P 4050 3850
+F 0 "R60" V 3975 3825 50  0000 C CNN
+F 1 "100k" V 4050 3850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 4050 3850 50  0001 C CNN
+F 3 "" H 4050 3850 50  0001 C CNN
+F 4 "Vishay" H -10000 -2725 50  0001 C CNN "S1MN"
+F 5 "CRCW0603100KFKEA" H -10000 -2725 50  0001 C CNN "S1PN"
+F 6 "R0603 100k" H -10000 -2725 50  0001 C CNN "desc"
+F 7 "Vishay" H -10000 -2725 50  0001 C CNN "manf"
+F 8 "CRCW0603100KFKEAHP" H -10000 -2725 50  0001 C CNN "manf#"
+F 9 "Voltage divider sets boards type." H 4050 3850 50  0001 C CNN "comment"
+F 10 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_star:manf"
+F 11 "CRCW0603100KFKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_star:manf#"
+F 12 "100k" H 3675 3850 50  0001 C CNN "kicost.board_type_star:value"
+F 13 "R0603 100k" H 3675 3850 50  0001 C CNN "kicost.board_type_star:desc"
+F 14 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_star:S1MN"
+F 15 "CRCW0603100KFKEA" H 3675 3850 50  0001 C CNN "kicost.board_type_star:S1PN"
+F 16 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:manf"
+F 17 "CRCW060310K0FKEA" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:manf#"
+F 18 "10k" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:value"
+F 19 "R0603 10k" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:desc"
+F 20 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:S1MN"
+F 21 "CRCW060310K0FKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:S1PN"
+F 22 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:manf"
+F 23 "CRCW060339K0FKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:manf#"
+F 24 "39k" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:value"
+F 25 "R0603 39k" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:desc"
+F 26 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:S1MN"
+F 27 "CRCW060339K0FKEA" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:S1PN"
+F 28 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:manf"
+F 29 "CRCW0603330RFKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:manf#"
+F 30 "330R" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:value"
+F 31 "R0603 330R" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:desc"
+F 32 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:S1MN"
+F 33 "CRCW0603330RFKEA" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:S1PN"
+	1    4050 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0133
+U 1 1 5D723E5A
+P 4275 3850
+F 0 "#PWR0133" H 4275 3600 50  0001 C CNN
+F 1 "GND" H 4280 3679 50  0000 C CNN
+F 2 "" H 4275 3850 50  0001 C CNN
+F 3 "" H 4275 3850 50  0001 C CNN
+	1    4275 3850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4275 3850 4200 3850
+Wire Wire Line
+	3825 3850 3850 3850
+Wire Wire Line
+	3850 3850 3850 3700
+Connection ~ 3850 3850
+Wire Wire Line
+	3850 3850 3900 3850
+$Comp
+L Device:R R59
+U 1 1 5D659C9E
+P 3675 3850
+F 0 "R59" V 3600 3825 50  0000 C CNN
+F 1 "100k" V 3675 3850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3675 3850 50  0001 C CNN
+F 3 "" H 3675 3850 50  0001 C CNN
+F 4 "Vishay" H -10375 -2725 50  0001 C CNN "S1MN"
+F 5 "CRCW0603100KFKEA" H -10375 -2725 50  0001 C CNN "S1PN"
+F 6 "R0603 100k" H -10375 -2725 50  0001 C CNN "desc"
+F 7 "Vishay" H -10375 -2725 50  0001 C CNN "manf"
+F 8 "CRCW0603100KFKEAHP" H -10375 -2725 50  0001 C CNN "manf#"
+F 9 "Voltage divider sets board type." H 3675 3850 50  0001 C CNN "comment"
+F 10 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_star:manf"
+F 11 "CRCW0603100KFKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_star:manf#"
+F 12 "100k" H 3675 3850 50  0001 C CNN "kicost.board_type_star:value"
+F 13 "R0603 100k" H 3675 3850 50  0001 C CNN "kicost.board_type_star:desc"
+F 14 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_star:S1MN"
+F 15 "CRCW0603100KFKEA" H 3675 3850 50  0001 C CNN "kicost.board_type_star:S1PN"
+F 16 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:manf"
+F 17 "CRCW060339K0FKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:manf#"
+F 18 "39k" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:value"
+F 19 "R0603 39k" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:desc"
+F 20 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_cp:S1MN"
+F 21 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:manf"
+F 22 "CRCW060310K0FKEA" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:manf#"
+F 23 "10k" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:value"
+F 24 "R0603 10k" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:desc"
+F 25 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:S1MN"
+F 26 "CRCW060310K0FKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:S1PN"
+F 27 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:manf"
+F 28 "CRCW060310K0FKEA" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:manf#"
+F 29 "10k" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:value"
+F 30 "R0603 10k" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:desc"
+F 31 "Vishay" H 3675 3850 50  0001 C CNN "kicost.board_type_pe:S1MN"
+F 32 "CRCW060310K0FKEAHP" H 3675 3850 50  0001 C CNN "kicost.board_type_tp:S1PN"
+	1    3675 3850
+	0    1    1    0   
+$EndComp
+Text Label 3150 3700 0    59   ~ 0
+V_HW_TYPE
+Wire Wire Line
+	3150 3700 3850 3700
+$Comp
+L tc5-rescue:VCC-power #PWR0107
+U 1 1 6242683E
+P 3450 3850
+F 0 "#PWR0107" H 3450 3700 50  0001 C CNN
+F 1 "VCC" H 3465 4021 50  0000 C CNN
+F 2 "" H 3450 3850 50  0001 C CNN
+F 3 "" H 3450 3850 50  0001 C CNN
+	1    3450 3850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L tc5-rescue:TestPoint_Probe-Connector TP1006
+U 1 1 62428AED
+P 3150 3700
+F 0 "TP1006" H 3550 3725 50  0000 R CNN
+F 1 "TP_HW_TYPE" H 3650 3650 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 3350 3700 50  0001 C CNN
+F 3 "~" H 3350 3700 50  0001 C CNN
+	1    3150 3700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R18
+U 1 1 6242B268
+P 3875 4200
+F 0 "R18" V 3775 4175 50  0000 C CNN
+F 1 "100k" V 3875 4200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 9950 4100 50  0001 C CNN
+F 3 "" H 9950 4100 50  0001 C CNN
+F 4 "Vishay" H -5250 -800 50  0001 C CNN "S1MN"
+F 5 "CRCW0603100KFKEA" H -5250 -800 50  0001 C CNN "S1PN"
+F 6 "R0603 100k" H -5250 -800 50  0001 C CNN "desc"
+F 7 "Vishay" H -5250 -800 50  0001 C CNN "manf"
+F 8 "CRCW0603100KFKEAHP" H -5250 -800 50  0001 C CNN "manf#"
+F 9 "inp1" H 9950 4100 50  0001 C CNN "variant"
+	1    3875 4200
+	0    1    1    0   
+$EndComp
+$Comp
+L tc5-rescue:VCC-power #PWR0108
+U 1 1 6242C310
+P 3650 4200
+F 0 "#PWR0108" H 3650 4050 50  0001 C CNN
+F 1 "VCC" H 3665 4371 50  0000 C CNN
+F 2 "" H 3650 4200 50  0001 C CNN
+F 3 "" H 3650 4200 50  0001 C CNN
+	1    3650 4200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0109
+U 1 1 6242C790
+P 4100 4200
+F 0 "#PWR0109" H 4100 3950 50  0001 C CNN
+F 1 "GND" H 4105 4029 50  0000 C CNN
+F 2 "" H 4100 4200 50  0001 C CNN
+F 3 "" H 4100 4200 50  0001 C CNN
+	1    4100 4200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3650 4200 3725 4200
+Wire Wire Line
+	4025 4200 4100 4200
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even P1
+U 1 1 62606E62
+P 4975 1650
+F 0 "P1" H 5025 1964 50  0000 C CNN
+F 1 "TC2030" H 5025 1875 50  0000 C CNN
+F 2 "tc5:TC2030-MCP-FP" H 4975 1650 50  0001 C CNN
+F 3 "~" H 4975 1650 50  0001 C CNN
+	1    4975 1650
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4775 1550
+NoConn ~ 4775 1650
+NoConn ~ 4775 1750
+NoConn ~ 5275 1750
+NoConn ~ 5275 1650
+NoConn ~ 5275 1550
 $EndSCHEMATC

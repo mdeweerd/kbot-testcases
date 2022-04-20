@@ -16,13 +16,13 @@ TARGETS_3D+=render_2d_bottom_black
 TARGETS_3D+=render_3d_top_black
 TARGETS_3D+=render_3d_bottom_black
 
-TARGETS_2D=pcbtop_img
-TARGETS_2D+=pcbbottom_img
+#TARGETS_2D=pcbtop_img
+#TARGETS_2D+=pcbbottom_img
 
-TARGET_ALLPADS=allpads_pcb allpads_drill allpads_position allpads_zip
+#TARGET_ALLPADS=allpads_pcb allpads_drill allpads_position allpads_zip
 
 TARGETS=
-TARGETS+=position_test_points
+#TARGETS+=position_test_points
 TARGETS+=schematic_color schematic_bw
 TARGETS+=bom ibom
 TARGETS+=position gerbers gerb_drill excellon
@@ -39,6 +39,10 @@ VERBOSE=
 
 VARIANTS=header
 DESIGN=$(KICAD_PRO_DIR)tc5/tc5
+
+TARGETS=bom ibom
+
+TARGETS=report
 
 # Run test case
 .PHONY: default
