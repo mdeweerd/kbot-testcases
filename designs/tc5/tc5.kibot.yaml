@@ -101,3 +101,31 @@ outputs:
       copper: '#2A2A2A'
       move_y: 0
       height: 1280
+  - name: diff_variants
+    type: diff
+    dir: +Diffs
+    comment: PCB difference between variants
+    layers:
+      # Note: a more generic approach is to use 'copper' but then the filenames
+      # are slightly different.
+      - copper
+      - F.SilkS
+      - B.SilkS
+      - F.Mask
+      - B.Mask
+      - Edge.Cuts
+      - F.Fab
+      - B.Fab
+
+    options:
+      cache_dir: .cache
+      diff_mode: red_green  # or stats
+      # fuzz: 5
+      new: [header, all]
+      new_type: multivar
+      add_link_id: true
+      copy_instead_of_link: true
+      old: master
+      old_type: git
+      pcb: true
+      threshold: 40

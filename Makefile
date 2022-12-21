@@ -44,6 +44,8 @@ TARGETS=bom ibom
 
 TARGETS=report
 
+TARGETS=diff_variants
+
 # Run test case
 .PHONY: default
 tc5:
