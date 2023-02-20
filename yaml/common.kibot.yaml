@@ -27,7 +27,20 @@ filters:
     exclude_refs:
       - QR*
       - TP*
-
+  - name: test_points
+    comment: Get the test points
+    type: generic
+    # invert: true
+    include_only:
+      - column: Footprint
+        regex: 'TestPoint'
+  - name: test_points_nok
+    comment: Get the test points
+    type: generic
+    invert: true
+    exclude_any:
+      - column: Footprint
+        regex: 'TestPoint'
 
 
 outputs:
@@ -683,3 +696,12 @@ outputs:
       #   - field:
       #     name:
       # variant:
+
+  - name: test_points
+    type: position
+    dir: +PCBA
+    extends: position
+    output_id: _test_points
+    options:
+      include_filter: test_points
+      include_virtual: true

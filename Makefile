@@ -46,6 +46,8 @@ TARGETS=report
 
 TARGETS=diff_variants
 
+TARGETS=test_points
+
 # Run test case
 .PHONY: default
 tc5:
@@ -61,7 +63,7 @@ package: package-tc5
 # Package test case
 .PHONY: package
 package-%:
-	tar zcv --exclude="*.tar.gz" --exclude=".git*" -f $*.tar.gz $(KICOD_PRO_DIR)$** $** designs/$** Makefile yaml 
+	tar zcv --exclude="*.tar.gz" --exclude=".git*" --exclude='*.sw?' -f $*.tar.gz $(KICOD_PRO_DIR)$** $** designs/$** Makefile yaml 
 
 
 .PHONY: clean
