@@ -1,7 +1,6 @@
 ---
 kibot:
   version: 1
-
 # Copy these globals to the project yaml:
 # They are not transfered from imports
 global:
@@ -11,8 +10,6 @@ global:
   date_time_format: '%Y%m%d_%H%M%S'
   date_format: '%Y%m%d'
   time_format: '%H%M%S'
-
-
 filters:
   # Used as prefilter in project
   - name: kicost_rename
@@ -24,26 +21,20 @@ filters:
   - name: bom
     comment: Exclude items that should not appear in the BOM
     type: generic
-    exclude_refs:
-      - QR*
-      - TP*
+    exclude_refs: [QR*, TP*]
   - name: test_points
-    comment: Get the test points
-    type: generic
-    # invert: true
-    include_only:
-      - column: Footprint
-        regex: 'TestPoint'
-  - name: test_points_nok
     comment: Get the test points
     type: generic
     invert: true
     exclude_any:
       - column: Footprint
-        regex: 'TestPoint'
-
-
+        regex: TestPoint
 outputs:
+  - name: info
+    type: info
+    comment: Record information about environment
+    run_by_default: true
+    dir: +BuildInfo
   - name: report
     comment: Unique report with characteristics, schematic, etc.
     type: report
@@ -54,7 +45,6 @@ outputs:
       output: '%f-%r_%d_%i%v.md'
       # simple, full or filename
       template: full
-
   - name: schematic_color
     type: pdf_sch_print
     dir: +PDF
@@ -62,7 +52,6 @@ outputs:
       # - dnf_filter:
       output: '%f-%r_%d_%i%v_color.%x'
       # - variant: ""
-
   - name: schematic_bw
     type: pdf_sch_print
     dir: +PDF
@@ -71,7 +60,6 @@ outputs:
       output: '%f-%r_%d_%i%v_bw.%x'
       # - variant: ""
       monochrome: true
-
 #  - name: 'sch_variant'
 #    comment: 'Creates a copy of the schematic with all the filters and variants applied.'
 #    type: sch_variant
@@ -84,7 +72,6 @@ outputs:
 #      variant: ''
 #
 #
-
   - name: bom
     comment: BOM
     dir: +PCBA
@@ -123,7 +110,14 @@ outputs:
         hide_pcb_info: true
         hide_stats_info: true
         quote_all: true
-
+  - name: test_points
+    type: position
+    dir: +PCBA
+    extends: position
+    output_id: _test_points
+    options:
+      dnf_filter: test_points
+      include_virtual: true
   # IBoM (Interactive HTML BoM):
   # For more information: https://github.com/INTI-CMNB/InteractiveHtmlBom
   # This output is what you get from the InteractiveHtmlBom plug-in (pcbnew).
@@ -208,8 +202,6 @@ outputs:
       # [string=''] List of board variants to include in the BOM.
       # IBoM option, avoid using in conjunction with KiBot variants/filters
       # variants_whitelist: ''
-
-
   - name: position
     type: position
     dir: +PCBA
@@ -254,7 +246,6 @@ outputs:
       create_gerber_job_file: true
       use_gerber_x2_attributes: true
       use_gerber_net_attributes: false
-
     layers: &prod_layers
       - layer: Edge.Cuts
       - layer: F.Fab
@@ -405,8 +396,8 @@ outputs:
   #    comment: 'Exports the PCB in board view format.'
   #    type: 'boardview'
   #    dir: '+boardview_dir'
-  #    # options:
-  #      # [string='%f-%i%v.%x'] Filename for the output (%i=boardview, %x=brd). Affected by global options
+  #  # options:
+  #  # [string='%f-%i%v.%x'] Filename for the output (%i=boardview, %x=brd). Affected by global options
   #      # output: '%f-%i%v.%x'
   # PcbDraw - Beautiful 2D PCB render:
   # Uses configurable colors.
@@ -540,7 +531,7 @@ outputs:
 #      format: jpg
 #      dpi: 300
 #      show_components: all
-#      output: '%f-%i%v-filled.%x'  
+#      output: '%f-%i%v-filled.%x'
   # STEP (ISO 10303-21 Clear Text Encoding of the Exchange Structure):
   # This is the most common 3D format for exchange purposes.
   # This output is what you get from the 'File/Export/STEP' menu in pcbnew.
@@ -593,7 +584,6 @@ outputs:
       width: 1200
       height: 720
       orthographic: false
-
   - name: render_3d_bottom
     type: render_3d
     dir: +PCB3D
@@ -617,7 +607,6 @@ outputs:
       width: 1200
       height: 720
       orthographic: false
-
   - name: render_2d_top
     type: render_3d
     dir: +PCBA
@@ -642,7 +631,6 @@ outputs:
       width: 2560
       height: 720
       orthographic: true
-
   - name: render_2d_bottom
     type: render_3d
     dir: +PCBA
@@ -669,26 +657,28 @@ outputs:
       width: 2560
       height: 720
       orthographic: true
-
   - name: kicost
     type: kicost
     dir: +PCBA
     options:
       # aggregate: []
-      #  # file, variant 
+      #  # file, variant
       currency: [EUR]
       # distributors: [ digikey, sos, newark, mouser, tme, farnell ]
       # no_distributors
       # dnf_filter:
       no_collapse: true
       no_price: true
-      fields:
+      fields: [comment, S1MN, S1PN, S2MN, S2PN]
+      split_extra_fields:
+        - h
         - comment
+        - desc
+        - lcsc#
         - S1MN
         - S1PN
         - S2MN
         - S2PN
-      split_extra_fields: [h, comment, desc, lcsc#, S1MN, S1PN, S2MN, S2PN]
       # board_qty: 1
       # split_fields: [ h, comment, desc, S1MN, S1PN, S2MN, S2PN ]
       show_cat_url: true
@@ -696,12 +686,3 @@ outputs:
       #   - field:
       #     name:
       # variant:
-
-  - name: test_points
-    type: position
-    dir: +PCBA
-    extends: position
-    output_id: _test_points
-    options:
-      include_filter: test_points
-      include_virtual: true

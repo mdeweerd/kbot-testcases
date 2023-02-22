@@ -21,18 +21,19 @@ TARGETS_3D+=render_3d_bottom_black
 
 #TARGET_ALLPADS=allpads_pcb allpads_drill allpads_position allpads_zip
 
-TARGETS=
+TARGETS_ALL=
 #TARGETS+=position_test_points
-TARGETS+=schematic_color schematic_bw
-TARGETS+=bom ibom
-TARGETS+=position gerbers gerb_drill excellon
-TARGETS+=$(TARGETS_2D)
-TARGETS+=pdf_pcb pdf_pcb_fab
-TARGETS+=step
-TARGETS+=$(TARGETS_3D)
-TARGETS+=$(TARGET_ALLPADS)
-TARGETS+=kicost
-TARGETS+=report
+TARGETS_ALL+=schematic_color schematic_bw
+TARGETS_ALL+=bom ibom
+TARGETS_ALL+=position gerbers gerb_drill excellon
+TARGETS_ALL+=$(TARGETS_2D)
+TARGETS_ALL+=pdf_pcb pdf_pcb_fab
+TARGETS_ALL+=step
+TARGETS_ALL+=$(TARGETS_3D)
+TARGETS_ALL+=$(TARGET_ALLPADS)
+TARGETS_ALL+=kicost
+TARGETS_ALL+=report
+TARGETS_ALL+=test_points
 
 VERBOSE=-vvvv
 VERBOSE=
@@ -47,6 +48,8 @@ TARGETS=report
 TARGETS=diff_variants
 
 TARGETS=test_points
+
+TARGETS=$(TARGETS_ALL)
 
 # Run test case
 .PHONY: default
