@@ -3,3 +3,4 @@ kibot.log
 tc*.tar.gz
 tc*_*
 **/*-backups
+**/*.sw?
