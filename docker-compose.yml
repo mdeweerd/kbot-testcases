@@ -8,7 +8,7 @@ services:
       DISPLAY: host.docker.internal:0.0
       NO_AT_BRIDGE: 1
     volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
-    command: make
+    command: make DESIGN=designs/tc6/tc6
 
   dev_k7:
     image: setsoft/kicad_auto_test:dev_k7
@@ -19,4 +19,4 @@ services:
       DISPLAY: host.docker.internal:0.0
       NO_AT_BRIDGE: 1
     volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
-    command: make
+    command: make DESIGN=designs/tc7/tc7
