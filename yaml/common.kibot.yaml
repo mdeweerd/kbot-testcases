@@ -4,9 +4,9 @@ kibot:
 # Copy these globals to the project yaml:
 # They are not transfered from imports
 global:
-  output: '%f_%r_%d-%i%I.%x'
+  output: '%f_%r_%d-%i%I%v.%x'
   # dir: "%f_%r_%d%v/"
-  out_dir: '%bf_%br_%bd_%g/'
+  out_dir: '%bf_%br_%bd%g/'
   date_time_format: '%Y%m%d_%H%M%S'
   date_format: '%Y%m%d'
   time_format: '%H%M%S'
@@ -22,6 +22,10 @@ filters:
     comment: Exclude items that should not appear in the BOM
     type: generic
     exclude_refs: [QR*, TP*]
+    exclude_virtual: true
+    exclude_any:
+      - column: Footprint
+        regex: TestPoint
   - name: test_points
     comment: Get the test points
     type: generic
@@ -42,7 +46,7 @@ outputs:
     # dir:
     # run_by_default: true
     options:
-      output: '%f-%r_%d_%i%v.md'
+      output: '%f-%r_%d_%i%v%g.md'
       # simple, full or filename
       template: full
   - name: schematic_color
@@ -371,7 +375,7 @@ outputs:
       # [string='full'] What to use to indicate the drill places, can be none, small or full (for real scale)
       drill_marks: full
       # [boolean=false] Print mirrored (X axis inverted). ONLY for KiCad 6
-      mirror: true
+      mirror: false  # False for KiCAD 7
       # [boolean=false] Print in black and white
       monochrome: false
       # [string='%f-%i%v.%x'] Filename for the output PDF (%i=layers, %x=pdf). Affected by global options
@@ -666,7 +670,7 @@ outputs:
       currency: [EUR]
       # distributors: [ digikey, sos, newark, mouser, tme, farnell ]
       # no_distributors
-      # dnf_filter:
+      dnf_filter: bom
       no_collapse: true
       no_price: true
       fields: [comment, S1MN, S1PN, S2MN, S2PN]

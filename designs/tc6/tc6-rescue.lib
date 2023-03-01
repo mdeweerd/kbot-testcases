@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Conn_01x04_Male-Connector-tc5-rescue
+# Conn_01x04_Male-Connector-tc6-rescue
 #
-DEF Conn_01x04_Male-Connector-tc5-rescue J 0 40 Y N 1 F N
+DEF Conn_01x04_Male-Connector-tc6-rescue J 0 40 Y N 1 F N
 F0 "J" 0 200 50 H V C CNN
-F1 "Conn_01x04_Male-Connector-tc5-rescue" 0 -300 50 H V C CNN
+F1 "Conn_01x04_Male-Connector-tc6-rescue" 0 -300 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -27,11 +27,11 @@ X Pin_4 4 200 -200 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# GND-power-tc5-rescue
+# GND-power-tc6-rescue
 #
-DEF GND-power-tc5-rescue #PWR 0 0 Y Y 1 F P
+DEF GND-power-tc6-rescue #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "GND-power-tc5-rescue" 0 -150 50 H V C CNN
+F1 "GND-power-tc6-rescue" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -40,11 +40,11 @@ X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# MCP6001-OT-Amplifier_Operational-tc5-rescue
+# MCP6001-OT-Amplifier_Operational-tc6-rescue
 #
-DEF MCP6001-OT-Amplifier_Operational-tc5-rescue U 0 5 Y Y 1 F N
+DEF MCP6001-OT-Amplifier_Operational-tc6-rescue U 0 5 Y Y 1 F N
 F0 "U" -50 250 50 H V L CNN
-F1 "MCP6001-OT-Amplifier_Operational-tc5-rescue" -50 150 50 H V L CNN
+F1 "MCP6001-OT-Amplifier_Operational-tc6-rescue" -50 150 50 H V L CNN
 F2 "Package_TO_SOT_SMD:SOT-23-5" -100 -200 50 H I L CNN
 F3 "" 0 200 50 H I C CNN
 $FPLIST
@@ -60,11 +60,11 @@ X - 4 -300 -100 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# R_Small-Device-tc5-rescue
+# R_Small-Device-tc6-rescue
 #
-DEF R_Small-Device-tc5-rescue R 0 10 N N 1 F N
+DEF R_Small-Device-tc6-rescue R 0 10 N N 1 F N
 F0 "R" 30 20 50 H V L CNN
-F1 "R_Small-Device-tc5-rescue" 30 -40 50 H V L CNN
+F1 "R_Small-Device-tc6-rescue" 30 -40 50 H V L CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -77,11 +77,11 @@ X ~ 2 0 -100 30 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# SYM_Arrow_Normal-Graphic-tc5-rescue
+# SYM_Arrow_Normal-Graphic-tc6-rescue
 #
-DEF SYM_Arrow_Normal-Graphic-tc5-rescue #SYM 0 40 Y Y 1 F N
+DEF SYM_Arrow_Normal-Graphic-tc6-rescue #SYM 0 40 Y Y 1 F N
 F0 "#SYM" 0 60 50 H I C CNN
-F1 "SYM_Arrow_Normal-Graphic-tc5-rescue" 10 -50 50 H I C CNN
+F1 "SYM_Arrow_Normal-Graphic-tc6-rescue" 10 -50 50 H I C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -90,11 +90,11 @@ P 4 0 1 0 100 0 30 -20 30 20 100 0 F
 ENDDRAW
 ENDDEF
 #
-# TestPoint_Probe-Connector-tc5-rescue
+# TestPoint_Probe-Connector-tc6-rescue
 #
-DEF TestPoint_Probe-Connector-tc5-rescue TP 0 30 N N 1 F N
+DEF TestPoint_Probe-Connector-tc6-rescue TP 0 30 N N 1 F N
 F0 "TP" 65 230 50 H V C CNN
-F1 "TestPoint_Probe-Connector-tc5-rescue" 65 160 50 H V C CNN
+F1 "TestPoint_Probe-Connector-tc6-rescue" 65 160 50 H V C CNN
 F2 "" 200 0 50 H I C CNN
 F3 "" 200 0 50 H I C CNN
 $FPLIST
@@ -108,11 +108,11 @@ X 1 1 0 0 0 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# VCC-power-tc5-rescue
+# VCC-power-tc6-rescue
 #
-DEF VCC-power-tc5-rescue #PWR 0 0 Y Y 1 F P
+DEF VCC-power-tc6-rescue #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "VCC-power-tc5-rescue" 0 150 50 H V C CNN
+F1 "VCC-power-tc6-rescue" 0 150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW

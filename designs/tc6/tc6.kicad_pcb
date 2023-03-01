@@ -150,7 +150,7 @@
     )
   )
 
-  (footprint "tc5:TC5" (layer "F.Cu")
+  (footprint "tc6:TC5" (layer "F.Cu")
     (tedit 0) (tstamp 00000000-0000-0000-0000-000061c63027)
     (at 135.3 97.9)
     (path "/00000000-0000-0000-0000-000061c5d077")
@@ -3540,7 +3540,7 @@
     )
   )
 
-  (footprint "tc5:DemoBoard" (layer "F.Cu")
+  (footprint "tc6:DemoBoard" (layer "F.Cu")
     (tedit 62327C03) (tstamp 00000000-0000-0000-0000-000062333880)
     (at 127.325 91.1)
     (path "/00000000-0000-0000-0000-000062329410")
@@ -3679,7 +3679,7 @@
     )
   )
 
-  (footprint "tc5:TC2030-MCP-FP" (layer "F.Cu")
+  (footprint "tc6:TC2030-MCP-FP" (layer "F.Cu")
     (tedit 5D6EDE77) (tstamp 00000000-0000-0000-0000-0000626051d1)
     (at 121.5 98.25 90)
     (descr "http://www.tag-connect.com/Materials/TC2030-MCP%20PCB%20Footprint.pdf")

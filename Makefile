@@ -40,6 +40,7 @@ VERBOSE=
 
 VARIANTS=header
 DESIGN=$(KICAD_PRO_DIR)tc5/tc5
+DESIGN=$(KICAD_PRO_DIR)tc6/tc6
 
 TARGETS=bom ibom
 
