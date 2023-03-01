@@ -57,7 +57,7 @@ TARGETS=$(TARGETS_ALL)
 tc5:
 	for i in $(VARIANTS) ; do \
              echo $$i ; \
-             $(KIBOT) -c $(DESIGN).kibot.yaml -b $(DESIGN).kicad_pcb -e $(DESIGN).sch \
+             $(KIBOT) -c $(DESIGN).kibot.yaml -b $(DESIGN).kicad_pcb -e $(DESIGN).kicad_sch \
                       -g variant=$$i $(VERBOSE)  $(TARGETS) \
              | tee $$(basename $(DESIGN))_$${i}_build.log ; \
         done

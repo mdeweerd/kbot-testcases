@@ -9,3 +9,14 @@ services:
       NO_AT_BRIDGE: 1
     volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
     command: make
+
+  dev_k7:
+    image: setsoft/kicad_auto_test:dev_k7
+    working_dir: /workdir
+    environment:
+      KIAUS_USE_NIGHTLY: "7.0"
+      KICAD7_SYMBOL_DIR: /usr/share/kicad-nightly/symbols
+      DISPLAY: host.docker.internal:0.0
+      NO_AT_BRIDGE: 1
+    volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
+    command: make
