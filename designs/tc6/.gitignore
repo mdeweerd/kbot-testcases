@@ -1,0 +1,9 @@
+fp-info-cache
+fp-lib-table
+*.bin
+*.dsn
+*.kicad_pcb-bak
+*.rules
+*.sch-bak
+*.ses
+*.xml
