@@ -1,11 +1,18 @@
-#!/bin/bash
+#!/bin/bash -xv
 #IMAGE=setsoft/kicad_auto:10.3-5.1.5
-#IMAGE=setsoft/kicad_auto:10.4-5.1.9
-#IMAGE=setsoft/kicad_auto:nightly
-IMAGE=setsoft/kicad_auto:dev
+#IMAGE=setsoft/kicad_auto:dev
+#IMAGE=setsoft/kicad_auto:dev_k6
+#IMAGE=setsoft/kicad_auto:nightly ; EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0" ; USE_LOCAL_KIBOT_AUTO=1
+IMAGE=ghcr.io/inti-cmnb/kicad_auto_test:dev_k7 ; EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0 --env KICAD7_SYMBOL_DIR=/usr/share/kicad-nightly/symbols" # ; USE_LOCAL_KIBOT_AUTO=1
+#IMAGE=setsoft/kicad_auto:latest
+#IMAGE=setsoft/kicad_auto_test:latest  # Has pandoc
 #IMAGE=setsoft/kicad_auto:latest
 #IMAGE=setsoft/kicad_auto:10.4-5.1.6rc
-docker pull $IMAGE
+if [ 0 == 1 ] ; then
+  IMAGE="my/kicad_auto:dev" ; docker build -t "${IMAGE}" .  # Uncomment to build local
+else
+  docker pull $IMAGE  # Uncomment to update
+fi
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
 # Using root on windows
@@ -15,7 +22,7 @@ export WORKDIR=$(realpath "$(dirname $0)/..")
 export SUBDIR=$(basename $0)
 export WORKDIR=$(realpath "$(dirname $0)")
 export SUBDIR=.
-export DISPLAY=${DISPLAY:=0}
+export DISPLAY=${DISPLAY:=:0}
 export HOMEDIR=$(realpath "$(dirname $0)/..")/kibot
 if [ ${USER_ID} != 0 ] ; then
   export TGTHOMEDIR="/home/${USER}"
@@ -51,34 +58,55 @@ HOMEDIR=$(cygpath -w "$HOMEDIR")
 #    --volume="${ETC}/group:/etc/group:ro" \
 #
 #echo $ARGS
-LOCAL_KICAD_DIR=$(cygpath 'C:\Program Files\KiCad\share\kicad')
-LOCAL_KICAD_LIBDIR=$(cygpath -d -w "$LOCAL_KICAD_DIR/library")
-LOCAL_KICAD_MODULESDIR=$(cygpath -d -w "$LOCAL_KICAD_DIR/modules")
-LOCAL_KICAD_LIB_SETTING="--volume=${LOCAL_KICAD_LIBDIR}:/usr/share/kicad/library:ro --volume=${LOCAL_KICAD_MODULESDIR}:/usr/share/kicad/modules:ro"
+LOCAL_KICAD5_DIR=$(cygpath -d -w 'C:\Program Files\KiCad\share\kicad')
+#LOCAL_KICAD5_LIBDIR=$(cygpath -d -w "$LOCAL_KICAD5_DIR/library")
+#LOCAL_KICAD5_MODULESDIR=$(cygpath -d -w "$LOCAL_KICAD5_DIR/modules")
+LOCAL_KICAD5_LIB_SETTING="--volume=${LOCAL_KICAD5_DIR}:/usr/share/kicad5:ro"
+LOCAL_KICAD5_LIB_SETTING=
 
-#LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot-repo/kibot):/usr/lib/python3.7/dist-packages/kibot:rw"
+LOCAL_KICAD_DIR=$(cygpath -d -w 'C:\Program Files\KiCad\6.0\share\kicad')
+#LOCAL_KICAD_LIBDIR=$(cygpath -d -w "$LOCAL_KICAD_DIR/library")
+#LOCAL_KICAD_3DMODELSDIR=$(cygpath -d -w "$LOCAL_KICAD_DIR/3dmodels")
+#LOCAL_KICAD_3DMODELSDIR=$(cygpath -d -w "$LOCAL_KICAD_DIR/3dmodels")
+LOCAL_KICAD_LIB_SETTING="--volume=${LOCAL_KICAD_DIR}:/usr/share/kicad6:ro"
+LOCAL_KICAD_LIB_SETTING=
+
+#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot-repo/kibot):/usr/lib/python3.7/dist-packages/kibot:rw"
+#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot-repo/kibot):/usr/lib/python3.7/dist-packages/kibot:rw"
 
 LOCAL_KIAUTOREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/kiauto):/usr/lib/python3/dist-packages/kiauto:rw"
-LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/src/pcbnew_do):/usr/bin/pcbnew_do:rw"
-LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/src/eeschema_do):/usr/bin/eeschema_do:rw"
+#LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/src/pcbnew_do):/usr/bin/pcbnew_do:rw"
+#LOCAL_KIAUTOREPO="${LOCAL_KIAUTOREPO} --volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/src/eeschema_do):/usr/bin/eeschema_do:rw"
 
-#LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/kiauto/eeschema_do):/usr/lib/python3.7/dist-packages/kiauto:rw"
-#LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot):${TGTHOMEDIR}/kibot:rw"
-LOCAL_KIBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot/kibot):/usr/local/lib/python3.7/dist-packages/kibot:rw"
-#LOCAL_KIBOTREPO=
-LOCAL_KIAUTOREPO=
+#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/KiAuto/kiauto/eeschema_do):/usr/lib/python3.7/dist-packages/kiaut:rw"
+#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot):${TGTHOMEDIR}/kibot:rw"
+#LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot/kibot):/usr/local/lib/python3.7/dist-packages/kibot:rw"
+LOCAL_KBOTREPO="--volume=$(cygpath -w /cygdrive/d/mdeweerd/KiCAD/kibot/kibot):/usr/lib/python3/dist-packages/kibot:rw"
+
+if [ "$USE_LOCAL_KIBOT_AUTO" != 1 ] ; then
+  LOCAL_KIAUTOREPO=""
+  LOCAL_KBOTREPO=
+fi
 if [ "$ARGS" == "" ] ; then
   ARGS=bash
 fi
+    OTHER_VOLUMES=--volume="${HOMEDIR}/.config/kicad:${TGTHOMEDIR}/.config/kicad:rw" --volume="${HOMEDIR}/.cache/kicad:${TGTHOMEDIR}/.cache/kicad:rw"
+OTHER_VOLUMES=
+OTHER_VOLUMES=--volume="${HOMEDIR}/.cache/kicad:${TGTHOMEDIR}/.cache/kicad:rw"
+
+#EXTRA_OPT="${EXTRA_OPT} --env PYTHONPATH=/usr/lib/kicad-nightly/lib/python3/dist-packages"
+
+echo "Executing: " "$@" > $1.log
 docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY \
+    ${LOCAL_KICAD5_LIB_SETTING} \
     ${LOCAL_KICAD_LIB_SETTING} \
-    ${LOCAL_KIBOTREPO} \
+    ${LOCAL_KBOTREPO} \
     ${LOCAL_KIAUTOREPO} \
     -v $WORKDIR:${TGTHOMEDIR}/workdir \
     --env NO_AT_BRIDGE=1 \
+    ${EXTRA_OPT} \
     --workdir="${TGTHOMEDIR}" \
+    ${OTHER_VOLUMES} \
     ${LOCAL_KICAD_LIB_SETTING} \
-    --volume="${HOMEDIR}/.config/kicad:${TGTHOMEDIR}/.config/kicad:rw" \
-    --volume="${HOMEDIR}/.cache/kicad:${TGTHOMEDIR}/.cache/kicad:rw" \
-    $IMAGE /bin/bash -c "cd workdir/$SUBDIR ; $ARGS" \
-| tee $1.log
+    $IMAGE /bin/bash -c "cd workdir/$SUBDIR ; kibot --version ; $ARGS" \
+| tee -a $1.log
