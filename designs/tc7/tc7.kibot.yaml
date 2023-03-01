@@ -1,0 +1,131 @@
+kibot:
+  version: 1
+
+import:
+  - file: ../../yaml/common.kibot.yaml
+    filters: [ 'bom', 'test_points' ]
+  - file: ../../yaml/pcbfull.kibot.yaml
+#    outputs:
+#    filters: 
+#    variants:
+  
+global:
+  output: "%f_%r_%d-%i%I.%x"
+  #out_dir: "%f_%br_%bd_%g/"
+  out_dir: "%bf_%r_%d_%g/"
+  date_time_format: '%Y%m%d_%H%M%S'
+  date_format: '%Y%m%d'
+  time_format: '%H%M%S'
+  variant: 'all'
+  #date_time_format: '%Y%m%d_%H%M%S'
+  date_time_format: '%Y%m%d'
+  date_format: '%Y%m%d'
+  time_format: '%H%M%S'
+  
+variants:
+  - name: 'header'
+    comment: 'Header only for test'
+    type: kicost
+    file_id: _header
+    variant: '^(board_type_duo|header|inp1)$'
+
+  - name: 'all'
+    comment: 'All components'
+    type: kicost
+    file_id: _all
+    variant: '^(.*)$'
+
+preflight:
+  #run_drc: true
+  #run_erc: true
+  #check_zone_fills: true
+  erc_warnings: true
+    # filters:
+    # - filter: "Description"
+    #   error: ""
+    #   number:
+    #   regex: "None"
+  filters:
+    - filter: "Ignore undriven power point (GND, VCC, 3V3)"
+      number: 3
+      regex: "(PWR0.*)"
+  ignore_unconnected: false
+  update_xml: true
+
+
+outputs:
+  - name: render_2d_top_black
+    type: render_3d
+    extends: render_2d_top
+    dir: "+PCBA"
+    disable_run_by_default: render_2d_top
+    options:
+      zoom: 6
+      width: 3072
+      solder_mask: '#1A1A1A'
+      copper: '#2A2A2A'
+      move_y: 0
+      height: 1024
+  - name: render_2d_bottom_black
+    type: render_3d
+    extends: render_2d_bottom
+    dir: "+PCBA"
+    disable_run_by_default: render_2d_bottom
+    options:
+      zoom: 6
+      width: 3072
+      solder_mask: '#1A1A1A'
+      copper: '#2A2A2A'
+      move_y: 0
+      height: 1024
+  - name: render_3d_top_black
+    type: render_3d
+    extends: render_3d_top
+    dir: "+PCB3D"
+    disable_run_by_default: render_3d_top
+    options:
+      zoom: 4
+      width: 3072
+      solder_mask: '#1A1A1A'
+      move_y: 0
+      height: 1280
+  - name: render_3d_bottom_black
+    type: render_3d
+    extends: render_3d_bottom
+    dir: "+PCB3D"
+    disable_run_by_default: render_3d_bottom
+    options:
+      zoom: 4
+      width: 3072
+      solder_mask: '#1A1A1A'
+      copper: '#2A2A2A'
+      move_y: 0
+      height: 1280
+  - name: diff_variants
+    type: diff
+    dir: +Diffs
+    comment: PCB difference between variants
+    layers:
+      # Note: a more generic approach is to use 'copper' but then the filenames
+      # are slightly different.
+      - copper
+      - F.SilkS
+      - B.SilkS
+      - F.Mask
+      - B.Mask
+      - Edge.Cuts
+      - F.Fab
+      - B.Fab
+
+    options:
+      cache_dir: .cache
+      diff_mode: red_green  # or stats
+      # fuzz: 5
+      new: [header, all]
+      new_type: multivar
+      add_link_id: true
+      copy_instead_of_link: true
+      old: master
+      old_type: git
+      pcb: true
+      threshold: 40
