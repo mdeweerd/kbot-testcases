@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name tc5-rescue)(type Legacy)(uri ${KIPRJMOD}/tc5-rescue.lib)(options "")(descr ""))
+  (lib (name "tc5-rescue")(type "Legacy")(uri "${KIPRJMOD}/tc5-rescue.lib")(options "")(descr ""))
+  (lib (name "tc6-rescue")(type "Legacy")(uri "${KIPRJMOD}/tc6-rescue.lib")(options "")(descr ""))
 )
