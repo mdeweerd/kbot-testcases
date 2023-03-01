@@ -1,6 +1,6 @@
 kibom-variant_4_*/
-kibot.log
-tc*.tar.gz
-tc*_*
+/kibot.log
+/tc*.tar.gz
+/tc*_*
 **/*-backups
 **/*.sw?
