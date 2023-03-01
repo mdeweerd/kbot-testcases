@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "tc6")(type "KiCad")(uri "${KIPRJMOD}/tc6.pretty")(options "")(descr ""))
+)
