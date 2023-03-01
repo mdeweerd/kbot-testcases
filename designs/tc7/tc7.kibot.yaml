@@ -129,3 +129,57 @@ outputs:
       old_type: git
       pcb: true
       threshold: 40
+
+  - name: diff_prev_pcb
+    type: diff
+    dir: +Diffs
+    comment: PCB difference with previous PCB
+    layers:
+      # Note: a more generic approach is to use 'copper' but then the filenames
+      # are slightly different.
+      - copper
+      - F.SilkS
+      - B.SilkS
+      - F.Mask
+      - B.Mask
+      - Edge.Cuts
+      - F.Fab
+      - B.Fab
+
+    options:
+      # output: '%f-%i%I%v.%x'
+      cache_dir: .cache
+      diff_mode: red_green  # or stats
+      # fuzz: 5
+      new: current
+      new_type: current
+      # new_type: git  # git or file or output or multivar or current
+      old: TC7_KICAD_6
+      old_type: git
+      pcb: true
+      add_link_id: true
+      copy_instead_of_link: true
+      threshold: 40
+
+  - name: diff_prev_sch
+    type: diff
+    dir: +Diffs
+    comment: SCH difference with previous version
+    layers: '*prod_layers'
+    options:
+      # output: '%f-%i%I%v.%x'
+      cache_dir: .cache
+      diff_mode: red_green  # or stats
+      # fuzz: 5
+      # new: AYAC100577-02_20191209
+      # new_type: git  #  git or file
+      # new: master
+      # new_type: git  # git or file
+      new: current
+      new_type: current
+      old: TC7_KICAD_6
+      old_type: git
+      pcb: false
+      add_link_id: true
+      copy_instead_of_link: true
+      threshold: 40

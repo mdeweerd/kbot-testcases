@@ -54,14 +54,24 @@ TARGETS=test_points
 TARGETS=$(TARGETS_ALL)
 
 # Run test case
-.PHONY: default
-tc5:
+.PHONY: selected
+selected:
 	for i in $(VARIANTS) ; do \
              echo $$i ; \
              $(KIBOT) -c $(DESIGN).kibot.yaml -b $(DESIGN).kicad_pcb -e $(DESIGN).kicad_sch \
-                      -g variant=$$i $(VERBOSE)  $(TARGETS) \
+                      -g variant=$$i $(VERBOSE) info $(TARGETS) \
              | tee $$(basename $(DESIGN))_$${i}_build.log ; \
         done
+
+
+
+.PHONY: info
+info: TARGETS=info
+info: selected
+
+.PHONY: diff
+diff: TARGETS=diff_prev_sch diff_prev_pcb
+diff: selected
 
 package: package-tc5
 
