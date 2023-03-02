@@ -81,6 +81,16 @@ $(DOCKER_COMPOSE_TARGETS):
 	docker compose pull $@
 	docker compose run --rm $@
 
+# Clean dangling and unused docker files
+.PHONY: clean-docker-full
+clean-docker-full:
+	docker system prune -af
+
+# Clean unused docker files
+.PHONY: clean-docker
+clean-docker:
+	docker system prune -a
+
 # Package test case
 .PHONY: package
 package-%:
