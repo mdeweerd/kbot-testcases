@@ -1626,7 +1626,7 @@
     (property "Value" "SYM_Arrow_XLarge" (at 50.8 29.337 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Footprint" "tc7:DemoBoard" (at 50.8 27.305 0)
+    (property "Footprint" "tc7:biggerPCB" (at 50.8 27.305 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 50.8 27.305 0)

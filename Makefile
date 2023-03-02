@@ -75,6 +75,11 @@ diff: selected
 
 package: package-tc5
 
+DOCKER_COMPOSE_TARGETS=dev_k6 dev_k7 diff_k7
+.PHONY: $(DOCKER_COMPOSE_TARGETS)
+$(DOCKER_COMPOSE_TARGETS):
+	docker compose run --rm $@
+
 # Package test case
 .PHONY: package
 package-%:
