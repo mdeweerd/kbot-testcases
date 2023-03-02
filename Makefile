@@ -75,7 +75,7 @@ diff: selected
 
 package: package-tc5
 
-DOCKER_COMPOSE_TARGETS=dev_k6 dev_k7 diff_k7
+DOCKER_COMPOSE_TARGETS=dev_k6 dev_k7 diff_k7 minimal_opt_k7
 .PHONY: $(DOCKER_COMPOSE_TARGETS)
 $(DOCKER_COMPOSE_TARGETS):
 	docker compose pull $@
