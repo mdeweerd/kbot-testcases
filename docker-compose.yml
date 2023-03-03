@@ -30,5 +30,5 @@ services:
     command: make DESIGN=designs/tc7/tc7 diff
 
   minimal_opt_k7:
-    extends:dev_k7
+    extends: dev_k7
     command: kibot -c designs/tc7/tc7.kibot.yaml schematic_bw
