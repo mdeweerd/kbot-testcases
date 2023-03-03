@@ -21,24 +21,14 @@ services:
     volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
     command: make DESIGN=designs/tc7/tc7
 
+  diff_k6:
+    extends: dev_k6
+    command: kibot -c designs/tc6/tc6.diff.kibot.yaml -b designs/tc6/tc6.kicad_pcb -e designs/tc6/tc6.kicad_sch -g variant=header -v diff_prev_pcb
+
   diff_k7:
-    image: setsoft/kicad_auto_test:dev_k7
-    working_dir: /workdir
-    environment:
-      KIAUS_USE_NIGHTLY: "7.0"
-      KICAD7_SYMBOL_DIR: /usr/share/kicad-nightly/symbols
-      DISPLAY: host.docker.internal:0.0
-      NO_AT_BRIDGE: 1
-    volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
+    extends: dev_k7
     command: make DESIGN=designs/tc7/tc7 diff
 
   minimal_opt_k7:
-    image: setsoft/kicad_auto_test:dev_k7
-    working_dir: /workdir
-    environment:
-      KIAUS_USE_NIGHTLY: "7.0"
-      KICAD7_SYMBOL_DIR: /usr/share/kicad-nightly/symbols
-      DISPLAY: host.docker.internal:0.0
-      NO_AT_BRIDGE: 1
-    volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
+    extends:dev_k7
     command: kibot -c designs/tc7/tc7.kibot.yaml schematic_bw
