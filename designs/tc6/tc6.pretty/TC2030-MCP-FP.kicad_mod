@@ -2,8 +2,6 @@
   (layer "F.Cu")
   (descr "http://www.tag-connect.com/Materials/TC2030-MCP%20PCB%20Footprint.pdf")
   (tags "TC2030-MCP PLUG-OF-NAILS(TM) CABLE")
-  (property "Sheetfile" "STAR.kicad_sch")
-  (property "Sheetname" "")
   (property "desc" "Virtual component - Tag Connect programming interface")
   (property "exclude_from_bom" "")
   (attr exclude_from_pos_files exclude_from_bom)
