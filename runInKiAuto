@@ -1,9 +1,10 @@
 #!/bin/bash -xv
 #IMAGE=setsoft/kicad_auto:10.3-5.1.5
 #IMAGE=setsoft/kicad_auto:dev
-IMAGE=setsoft/kicad_auto:dev_k6
+#IMAGE=setsoft/kicad_auto:dev_k6
 #IMAGE=setsoft/kicad_auto:nightly ; EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0" ; USE_LOCAL_KIBOT_AUTO=1
 #IMAGE=ghcr.io/inti-cmnb/kicad_auto_test:dev_k7 ; EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0 --env KICAD7_SYMBOL_DIR=/usr/share/kicad-nightly/symbols" # ; USE_LOCAL_KIBOT_AUTO=1
+IMAGE=ghcr.io/inti-cmnb/kicad7_auto_full:dev ; # EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0 --env KICAD7_SYMBOL_DIR=/usr/share/kicad-nightly/symbols" # ; USE_LOCAL_KIBOT_AUTO=1
 #IMAGE=setsoft/kicad_auto:latest
 #IMAGE=setsoft/kicad_auto_test:latest  # Has pandoc
 #IMAGE=setsoft/kicad_auto:latest
@@ -33,7 +34,7 @@ fi
 # Quote arguments
 ARGS=""
 for i in "$@" ; do
-    ARGS=$ARGS" '"${i/\'/\\\'}"'"
+  ARGS=$ARGS" '"${i/\'/\\\'}"'"
 done
 #ARGS="$@"
 
@@ -51,12 +52,12 @@ HOMEDIR=$(cygpath -w "$HOMEDIR")
 #
 # passwd & shadow not propagated on windows, using root user
 #  --user $USER_ID:$GROUP_ID \
-#ETC=$(cygpath -w "/etc")
+  #ETC=$(cygpath -w "/etc")
 #ETC=/etc
 #    --volume="${ETC}/passwd:/etc/passwd:ro" \
-#    --volume="${ETC}/shadow:/etc/shadow:ro" \
-#    --volume="${ETC}/group:/etc/group:ro" \
-#
+  #    --volume="${ETC}/shadow:/etc/shadow:ro" \
+  #    --volume="${ETC}/group:/etc/group:ro" \
+  #
 #echo $ARGS
 LOCAL_KICAD5_DIR=$(cygpath -d -w 'C:\Program Files\KiCad\share\kicad')
 #LOCAL_KICAD5_LIBDIR=$(cygpath -d -w "$LOCAL_KICAD5_DIR/library")
@@ -90,23 +91,34 @@ fi
 if [ "$ARGS" == "" ] ; then
   ARGS=bash
 fi
-    OTHER_VOLUMES=--volume="${HOMEDIR}/.config/kicad:${TGTHOMEDIR}/.config/kicad:rw" --volume="${HOMEDIR}/.cache/kicad:${TGTHOMEDIR}/.cache/kicad:rw"
+OTHER_VOLUMES=--volume="${HOMEDIR}/.config/kicad:${TGTHOMEDIR}/.config/kicad:rw" --volume="${HOMEDIR}/.cache/kicad:${TGTHOMEDIR}/.cache/kicad:rw"
 OTHER_VOLUMES=
-OTHER_VOLUMES=--volume="${HOMEDIR}/.cache/kicad:${TGTHOMEDIR}/.cache/kicad:rw"
+# OTHER_VOLUMES=--volume="${HOMEDIR}/.cache/kicad:${TGTHOMEDIR}/.cache/kicad:rw"
 
 #EXTRA_OPT="${EXTRA_OPT} --env PYTHONPATH=/usr/lib/kicad-nightly/lib/python3/dist-packages"
 
+KEYS="ELEMENT14_PART_API_KEY MOUSER_KEY TME_APP_SECRET"
+KEYS_ENV=""
+for KEY in $KEYS ; do
+  echo " --env $KEY='${$KEY}'"
+  KEYS_ENV+=" --env $KEY='${$KEY}'"
+done
+mkdir -p ../kicost_cache
+
+
 echo "Executing: " "$@" > $1.log
 docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY \
-    ${LOCAL_KICAD5_LIB_SETTING} \
-    ${LOCAL_KICAD_LIB_SETTING} \
-    ${LOCAL_KBOTREPO} \
-    ${LOCAL_KIAUTOREPO} \
-    -v $WORKDIR:${TGTHOMEDIR}/workdir \
-    --env NO_AT_BRIDGE=1 \
-    ${EXTRA_OPT} \
-    --workdir="${TGTHOMEDIR}" \
-    ${OTHER_VOLUMES} \
-    ${LOCAL_KICAD_LIB_SETTING} \
-    $IMAGE /bin/bash -c "cd workdir/$SUBDIR ; kibot --version ; $ARGS" \
-| tee -a $1.log
+  -v $WORKDIR/../.cache:${TGTHOMEDIR}/.cache \
+  ${LOCAL_KICAD5_LIB_SETTING} \
+  ${LOCAL_KICAD_LIB_SETTING} \
+  ${LOCAL_KBOTREPO} \
+  ${LOCAL_KIAUTOREPO} \
+  -v $WORKDIR:${TGTHOMEDIR}/workdir \
+  ${KEYS_ENV} \
+  --env NO_AT_BRIDGE=1 \
+  ${EXTRA_OPT} \
+  --workdir="${TGTHOMEDIR}" \
+  ${OTHER_VOLUMES} \
+  ${LOCAL_KICAD_LIB_SETTING} \
+  $IMAGE /bin/bash -c "cd workdir/$SUBDIR ; kibot --version ; $ARGS" \
+  | tee -a $1.log

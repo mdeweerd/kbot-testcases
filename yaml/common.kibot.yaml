@@ -669,6 +669,7 @@ outputs:
       #  # file, variant
       currency: [EUR]
       # distributors: [ digikey, sos, newark, mouser, tme, farnell ]
+      # distributors: [ mouser, tme, farnell, arrow, lcsc ]
       # no_distributors
       dnf_filter: bom
       no_collapse: true
@@ -683,6 +684,7 @@ outputs:
         - S1PN
         - S2MN
         - S2PN
+      number: 1
       # board_qty: 1
       # split_fields: [ h, comment, desc, S1MN, S1PN, S2MN, S2PN ]
       show_cat_url: true

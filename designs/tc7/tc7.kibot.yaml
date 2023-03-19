@@ -5,6 +5,7 @@ import:
   - file: ../../yaml/common.kibot.yaml
     filters: [ 'bom', 'test_points' ]
   - file: ../../yaml/pcbfull.kibot.yaml
+  - file: ../../yaml/debug_bom.kibot.yaml
 #    outputs:
 #    filters: 
 #    variants:
@@ -28,6 +29,12 @@ variants:
     type: kicost
     file_id: _header
     variant: '^(board_type_duo|header|inp1)$'
+
+  - name: 'tp'
+    comment: 'Use same resistor for type as for opamp'
+    type: kicost
+    file_id: _tp
+    variant: '^(board_type_tp|opamp|header|inp1)$'
 
   - name: 'all'
     comment: 'All components'

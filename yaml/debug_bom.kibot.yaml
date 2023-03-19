@@ -1,0 +1,58 @@
+---
+kibot:
+  version: 1
+
+outputs:
+  - name: debug_bom
+    comment: BoM for helping in debug
+    type: bom
+    options:
+      output: '%f_%r_%d-%i%v_debug_bom.%x'
+      group_fields: ['Ref','desc','manf#','Value','comment']
+      format: XLSX
+      ref_separator: ','
+      columns:
+        - field: Row
+          name: Pos.
+        - field: References
+          name: Repère/Layout Ref
+        - field: Quantity Per PCB
+          name: Q
+        - field: desc
+          name: DESIGNATION
+        - field: manf#
+          name: Référence/Part number
+          join:
+            - field: S1PN
+              text_before: \n
+            - field: S2PN
+              text_before: \n
+        - field: manf
+          name: FABRICANT/OEM
+          join:
+            - field: S1MN
+              text_before: \n
+            - field: S2MN
+              text_before: \n
+        - field: Value
+          name: Value
+        - field: Footprint
+          name: Package
+        - field: comment
+          name: Observations
+        - field: LCSC#
+          name: 'LCSC Part #'
+      xlsx:
+        col_colors: true
+        title: BOM
+        logo: false
+        style: modern-blue
+        hide_pcb_info: false
+        hide_stats_info: false
+        generate_dnf: false
+        datasheet_as_link: datasheet
+        highlight_empty: false
+      # csv:
+      #  hide_pcb_info: true
+      #  hide_stats_info: true
+      #  quote_all: true

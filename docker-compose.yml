@@ -2,7 +2,7 @@
 version: '3.5'
 services:
   dev_k6:
-    image: setsoft/kicad_auto:dev_k6
+    image: setsoft/kicad_auto_test:dev_k6
     working_dir: /workdir
     environment:
       DISPLAY: host.docker.internal:0.0
@@ -11,11 +11,11 @@ services:
     command: make DESIGN=designs/tc6/tc6
 
   dev_k7:
-    image: setsoft/kicad_auto_test:dev_k7
+    image: ghcr.io/inti-cmnb/kicad7_auto_full:dev
     working_dir: /workdir
     environment:
-      KIAUS_USE_NIGHTLY: "7.0"
-      KICAD7_SYMBOL_DIR: /usr/share/kicad-nightly/symbols
+      # KIAUS_USE_NIGHTLY: "7.0"
+      # KICAD7_SYMBOL_DIR: /usr/share/kicad-nightly/symbols
       DISPLAY: host.docker.internal:0.0
       NO_AT_BRIDGE: 1
     volumes: [.:/workdir, .cache/kicad:/workdir/.cache]
@@ -32,3 +32,8 @@ services:
   minimal_opt_k7:
     extends: dev_k7
     command: kibot -c designs/tc7/tc7.kibot.yaml schematic_bw
+
+  var_k7:
+    extends: dev_k7
+    command: kibot -c designs/tc7/tc7.kibot.yaml -b designs/tc7/tc7.kicad_pcb -e designs/tc7/tc7.kicad_sch -g variant=tp -v debug_bom
+
