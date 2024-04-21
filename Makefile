@@ -42,6 +42,7 @@ VARIANTS=header
 DESIGN=$(KICAD_PRO_DIR)tc5/tc5
 DESIGN=$(KICAD_PRO_DIR)tc6/tc6
 DESIGN=$(KICAD_PRO_DIR)tc7/tc7
+DESIGN=$(KICAD_PRO_DIR)tc8/tc8
 
 TARGETS=bom ibom
 
@@ -75,7 +76,8 @@ diff: selected
 
 package: package-tc5
 
-DOCKER_COMPOSE_TARGETS=dev_k6 dev_k7 diff_k6 diff_k7 minimal_opt_k7 var_k7
+DOCKER_COMPOSE_TARGETS=dev_k6 dev_k7 dev_k8 diff_k6 diff_k7 minimal_opt_k7 var_k7
+ghcr.io/inti-cmnb/kicad8_auto_full:dev
 .PHONY: $(DOCKER_COMPOSE_TARGETS)
 $(DOCKER_COMPOSE_TARGETS):
 	docker compose pull $@

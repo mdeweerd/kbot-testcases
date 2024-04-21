@@ -1,0 +1,7 @@
+fp-info-cache
+*.bin
+*.dsn
+*.rules
+*.ses
+*.xml
+*-bak

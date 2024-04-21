@@ -4,7 +4,8 @@
 #IMAGE=setsoft/kicad_auto:dev_k6
 #IMAGE=setsoft/kicad_auto:nightly ; EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0" ; USE_LOCAL_KIBOT_AUTO=1
 #IMAGE=ghcr.io/inti-cmnb/kicad_auto_test:dev_k7 ; EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0 --env KICAD7_SYMBOL_DIR=/usr/share/kicad-nightly/symbols" # ; USE_LOCAL_KIBOT_AUTO=1
-IMAGE=ghcr.io/inti-cmnb/kicad7_auto_full:dev ; # EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0 --env KICAD7_SYMBOL_DIR=/usr/share/kicad-nightly/symbols" # ; USE_LOCAL_KIBOT_AUTO=1
+#IMAGE=ghcr.io/inti-cmnb/kicad7_auto_full:dev ; # EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0 --env KICAD7_SYMBOL_DIR=/usr/share/kicad-nightly/symbols" # ; USE_LOCAL_KIBOT_AUTO=1
+IMAGE=${KIBOT_IMAGE:=ghcr.io/inti-cmnb/kicad8_auto_full:dev} ; # EXTRA_OPT="--env KIAUS_USE_NIGHTLY=7.0 --env KICAD7_SYMBOL_DIR=/usr/share/kicad-nightly/symbols" # ; USE_LOCAL_KIBOT_AUTO=1
 #IMAGE=setsoft/kicad_auto:latest
 #IMAGE=setsoft/kicad_auto_test:latest  # Has pandoc
 #IMAGE=setsoft/kicad_auto:latest
